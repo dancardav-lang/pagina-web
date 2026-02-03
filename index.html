@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OptiStore - Optimizaciones y cuentas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <div>
+        <p class="logo">OptiStore</p>
+        <p class="tagline">Optimizaciones y cuentas digitales</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#productos">Productos</a>
+      <a href="#planes">Planes</a>
+      <a href="#beneficios">Beneficios</a>
+      <button class="cart-btn" id="openCart">
+        <span>Carrito</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="pill">Servicio digital</p>
+        <h1>Optimizaciones y cuentas de Steam, Roblox y mas en un solo sitio.</h1>
+        <p class="hero-text">Servicios claros y directos: cuentas, mejoras y soporte. Sin ruido, sin exceso de promesas.</p>
+        <div class="hero-actions">
+          <a class="primary" href="#productos">Ver productos</a>
+          <button class="ghost" id="randomPick">Sugerir uno</button>
+        </div>
+        <div class="hero-metrics">
+          <div>
+            <p class="metric">Rapido</p>
+            <p>Entregas digitales en horas</p>
+          </div>
+          <div>
+            <p class="metric">Soporte</p>
+            <p>Atencion directa por chat</p>
+          </div>
+          <div>
+            <p class="metric">Seguro</p>
+            <p>Procesos verificados</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="card-preview">
+          <p>Producto destacado</p>
+          <h3>Optimizacion FPS Pro</h3>
+          <span>$18.00</span>
+          <button class="mini">Anadir al carrito</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" id="productos">
+      <div>
+        <h2>Explora productos</h2>
+        <p>Filtra por categoria o busca lo que quieras.</p>
+      </div>
+      <div class="control-row">
+        <div class="search">
+          <input id="searchInput" type="text" placeholder="Busca: steam, roblox, optimizacion..." />
+        </div>
+        <select id="categorySelect">
+          <option value="all">Todas las categorias</option>
+          <option value="cuentas">Cuentas</option>
+          <option value="optimizaciones">Optimizaciones</option>
+          <option value="extras">Extras</option>
+        </select>
+        <select id="sortSelect">
+          <option value="featured">Destacados</option>
+          <option value="price-asc">Precio menor a mayor</option>
+          <option value="price-desc">Precio mayor a menor</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="grid" id="productGrid"></section>
+
+    <section class="collection" id="planes">
+      <div class="collection-info">
+        <p class="pill">Planes</p>
+        <h2>Paquetes combinados</h2>
+        <p>Combina cuenta + optimizacion con descuento directo. Todo claro y sin letras raras.</p>
+        <div class="collection-tags">
+          <span>Entrega digital</span>
+          <span>Precios claros</span>
+          <span>Soporte real</span>
+        </div>
+        <button class="primary" id="viewCollection">Ver planes</button>
+      </div>
+      <div class="collection-cards">
+        <article>
+          <p>Steam + optimizacion FPS</p>
+          <span>$30.00</span>
+        </article>
+        <article>
+          <p>Roblox + ajuste de latencia</p>
+          <span>$22.00</span>
+        </article>
+        <article>
+          <p>Pack 2 cuentas Steam</p>
+          <span>$26.00</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="benefits" id="beneficios">
+      <h2>Comprar aqui es facil</h2>
+      <div class="benefit-grid">
+        <article>
+          <h3>Pagos seguros</h3>
+          <p>Tarjetas y transferencias protegidas.</p>
+        </article>
+        <article>
+          <h3>Atencion en vivo</h3>
+          <p>Chat directo con nuestro equipo.</p>
+        </article>
+        <article>
+          <h3>Garantia clara</h3>
+          <p>Si hay problema, se resuelve rapido.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div>
+        <h2>Recibe avisos</h2>
+        <p>Nuevas cuentas y optimizaciones cada semana.</p>
+      </div>
+      <form id="newsletterForm">
+        <input type="email" placeholder="Tu email" required />
+        <button class="primary" type="submit">Avisame</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 OptiStore. Servicios digitales.</p>
+  </footer>
+
+  <aside class="cart" id="cartPanel" aria-hidden="true">
+    <div class="cart-header">
+      <h3>Tu carrito</h3>
+      <button class="icon" id="closeCart">Cerrar</button>
+    </div>
+    <div class="cart-body" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-summary">
+        <span>Total</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button class="primary" id="checkoutBtn">Finalizar compra</button>
+      <p class="cart-note">Entrega digital inmediata</p>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
