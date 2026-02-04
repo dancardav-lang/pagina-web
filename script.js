@@ -1,18 +1,18 @@
 ﻿const products = [
   {
     id: 1,
-    name: "Optimizacion FPS Pro",
+    name: "Optimización FPS Pro",
     price: 18,
     category: "optimizaciones",
-    description: "Ajustes para subir fps y reducir tirones en juegos.",
+    description: "Ajustes para subir FPS y reducir tirones en juegos.",
     badge: "Top"
   },
   {
     id: 2,
-    name: "Cuenta Steam Basica",
+    name: "Cuenta Steam Básica",
     price: 12,
     category: "cuentas",
-    description: "Cuenta lista para usar con verificacion.",
+    description: "Cuenta lista para usar con verificación.",
     badge: "Nuevo"
   },
   {
@@ -20,7 +20,7 @@
     name: "Cuenta Steam Premium",
     price: 22,
     category: "cuentas",
-    description: "Cuenta con saldo y extras segun stock.",
+    description: "Cuenta con saldo y extras según stock.",
     badge: "Popular"
   },
   {
@@ -28,12 +28,12 @@
     name: "Cuenta Roblox",
     price: 10,
     category: "cuentas",
-    description: "Cuenta verificada con configuracion inicial.",
-    badge: "Rapido"
+    description: "Cuenta verificada con configuración inicial.",
+    badge: "Rápido"
   },
   {
     id: 5,
-    name: "Optimizacion Latencia",
+    name: "Optimización Latencia",
     price: 14,
     category: "optimizaciones",
     description: "Mejora de ping y estabilidad de red.",
@@ -49,10 +49,10 @@
   },
   {
     id: 7,
-    name: "Guia de ajustes PC",
+    name: "Guía de ajustes PC",
     price: 8,
     category: "extras",
-    description: "Guia simple para mantener el sistema rapido.",
+    description: "Guía simple para mantener el sistema rápido.",
     badge: "Extra"
   },
   {
@@ -60,7 +60,7 @@
     name: "Soporte prioritario",
     price: 6,
     category: "extras",
-    description: "Atencion prioritaria.",
+    description: "Atención prioritaria.",
     badge: "Plus"
   }
 ];
@@ -119,7 +119,7 @@ function renderProducts() {
           <span>${formatPrice(product.price)}</span>
           <span>${product.category}</span>
         </div>
-        <button data-id="${product.id}">Anadir al carrito</button>
+        <button data-id="${product.id}">Añadir al carrito</button>
       </article>
     `
     )
@@ -130,7 +130,7 @@ function renderCart() {
   const items = Object.values(state.cart);
 
   if (items.length === 0) {
-    cartItems.innerHTML = "<p>Tu carrito esta vacio. Elige algo.</p>";
+    cartItems.innerHTML = "<p>Tu carrito está vacío. Elige algo.</p>";
     cartTotal.textContent = "$0.00";
     updateCartCount();
     return;
@@ -231,14 +231,31 @@ document.getElementById("openCart").addEventListener("click", () => toggleCart(t
 
 document.getElementById("closeCart").addEventListener("click", () => toggleCart(false));
 
-overlay.addEventListener("click", () => toggleCart(false));
-
-document.getElementById("randomPick").addEventListener("click", () => {
-  const random = products[Math.floor(Math.random() * products.length)];
-  addToCart(random.id);
-  toggleCart(true);
+overlay.addEventListener("click", () => {
+  toggleCart(false);
+  toggleCheckout(false);
 });
+
+
+const checkoutPanel = document.getElementById("checkoutPanel");
+const checkoutCode = document.getElementById("checkoutCode");
+const closeCheckout = document.getElementById("closeCheckout");
+
+function toggleCheckout(open) {
+  checkoutPanel.classList.toggle("open", open);
+  overlay.classList.toggle("show", open);
+  checkoutPanel.setAttribute("aria-hidden", (!open).toString());
+}
 
 document.getElementById("checkoutBtn").addEventListener("click", () => {
-  alert("Checkout demo: aqui conectariamos con el pago real.");
+  const items = Object.values(state.cart);
+  if (items.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+  const code = `OPTI-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+  checkoutCode.textContent = code;
+  toggleCheckout(true);
 });
+
+closeCheckout.addEventListener("click", () => toggleCheckout(false));
