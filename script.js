@@ -246,6 +246,10 @@ overlay.addEventListener("click", () => {
 const checkoutPanel = document.getElementById("checkoutPanel");
 const checkoutCode = document.getElementById("checkoutCode");
 const checkoutTotal = document.getElementById("checkoutTotal");
+const checkoutItems = document.getElementById("checkoutItems");
+const checkoutOrderId = document.getElementById("checkoutOrderId");
+const checkoutRef = document.getElementById("checkoutRef");
+const copyTicketButton = document.getElementById("copyTicket");
 const closeCheckout = document.getElementById("closeCheckout");
 
 function toggleCheckout(open) {
@@ -260,11 +264,79 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
     alert("Tu carrito está vacío.");
     return;
   }
-  const code = `OPTI-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
-  const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
-  checkoutCode.textContent = code;
-  checkoutTotal.textContent = formatPrice(total);
+  const order = buildOrder(items);
+  renderCheckout(order);
   toggleCheckout(true);
 });
 
 closeCheckout.addEventListener("click", () => toggleCheckout(false));
+
+function buildOrder(items) {
+  const orderId = `OPTI-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+  const code = `CODE-${Math.random().toString(36).slice(2, 10).toUpperCase()}`;
+  const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const ref = makeRef(orderId, total, items);
+  const createdAt = new Date().toISOString();
+  return { orderId, code, total, ref, items, createdAt };
+}
+
+function makeRef(orderId, total, items) {
+  const base = `${orderId}|${total}|${items.map((i) => `${i.id}x${i.qty}`).join(",")}`;
+  let hash = 0;
+  for (let i = 0; i < base.length; i += 1) {
+    hash = (hash << 5) - hash + base.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash).toString(36).toUpperCase().slice(0, 6);
+}
+
+function renderCheckout(order) {
+  checkoutCode.textContent = order.code;
+  checkoutTotal.textContent = formatPrice(order.total);
+  checkoutOrderId.textContent = order.orderId;
+  checkoutRef.textContent = order.ref;
+  checkoutItems.innerHTML = order.items
+    .map(
+      (item) => `
+      <div class="checkout-item">
+        <span>${item.name} x${item.qty}</span>
+        <span>${formatPrice(item.price * item.qty)}</span>
+      </div>
+    `
+    )
+    .join("");
+  localStorage.setItem("optistore-last-order", JSON.stringify(order));
+}
+
+function buildTicketText() {
+  const raw = localStorage.getItem("optistore-last-order");
+  if (!raw) return "";
+  const order = JSON.parse(raw);
+  const lines = order.items.map(
+    (item) => `- ${item.name} x${item.qty} (${formatPrice(item.price * item.qty)})`
+  );
+  return [
+    `Pedido: ${order.orderId}`,
+    `Codigo: ${order.code}`,
+    `Ref: ${order.ref}`,
+    `Total: ${formatPrice(order.total)}`,
+    "Items:",
+    ...lines
+  ].join("\n");
+}
+
+if (copyTicketButton) {
+  copyTicketButton.addEventListener("click", async () => {
+    const text = buildTicketText();
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyTicketButton.textContent = "Copiado";
+      setTimeout(() => {
+        copyTicketButton.textContent = "Copiar ticket";
+      }, 1000);
+    } catch {
+      alert("No se pudo copiar.");
+    }
+  });
+}
