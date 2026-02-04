@@ -1,67 +1,39 @@
 ﻿const products = [
   {
     id: 1,
-    name: "Optimización FPS Pro",
-    price: 18,
-    category: "optimizaciones",
-    description: "Ajustes para subir FPS y reducir tirones en juegos.",
+    name: "Cuenta Steam - Payday 3",
+    price: 27,
+    category: "steam",
+    description:
+      "Steam Account con [Payday 3]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
     badge: "Top"
   },
   {
     id: 2,
-    name: "Cuenta Steam Básica",
-    price: 12,
-    category: "cuentas",
-    description: "Cuenta lista para usar con verificación.",
+    name: "Cuenta Steam - Schedule",
+    price: 22,
+    category: "steam",
+    description:
+      "Steam Account con [Schedule]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
     badge: "Nuevo"
   },
   {
     id: 3,
-    name: "Cuenta Steam Premium",
-    price: 22,
-    category: "cuentas",
-    description: "Cuenta con saldo y extras según stock.",
+    name: "Cuenta Steam - Minecraft",
+    price: 19,
+    category: "steam",
+    description:
+      "Steam Account con [Minecraft]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
     badge: "Popular"
   },
   {
     id: 4,
-    name: "Cuenta Roblox",
-    price: 10,
-    category: "cuentas",
-    description: "Cuenta verificada con configuración inicial.",
-    badge: "Rápido"
-  },
-  {
-    id: 5,
-    name: "Optimización Latencia",
-    price: 14,
-    category: "optimizaciones",
-    description: "Mejora de ping y estabilidad de red.",
+    name: "Cuenta Steam - GTA 6",
+    price: 35,
+    category: "steam",
+    description:
+      "Steam Account con [GTA 6]. La cuenta puede tener más juegos/saldo/regalos/etc. Formato: login:pass. Fresh, checked y UHQ. Al abrir ticket te lo enviaremos.",
     badge: "Pro"
-  },
-  {
-    id: 6,
-    name: "Pack 2 cuentas Steam",
-    price: 26,
-    category: "cuentas",
-    description: "Dos cuentas con entrega inmediata.",
-    badge: "Pack"
-  },
-  {
-    id: 7,
-    name: "Guía de ajustes PC",
-    price: 8,
-    category: "extras",
-    description: "Guía simple para mantener el sistema rápido.",
-    badge: "Extra"
-  },
-  {
-    id: 8,
-    name: "Soporte prioritario",
-    price: 6,
-    category: "extras",
-    description: "Atención prioritaria.",
-    badge: "Plus"
   }
 ];
 
@@ -85,6 +57,11 @@ function saveCart() {
 
 function formatPrice(value) {
   return `$${value.toFixed(2)}`;
+}
+
+function formatCategoryLabel(category) {
+  if (category === "steam") return "Steam";
+  return category;
 }
 
 function updateCartCount() {
@@ -117,7 +94,7 @@ function renderProducts() {
         <p>${product.description}</p>
         <div class="product-meta">
           <span>${formatPrice(product.price)}</span>
-          <span>${product.category}</span>
+          <span>${formatCategoryLabel(product.category)}</span>
         </div>
         <button data-id="${product.id}">Añadir al carrito</button>
       </article>
@@ -236,13 +213,9 @@ overlay.addEventListener("click", () => {
   toggleCheckout(false);
 });
 
-
 const checkoutPanel = document.getElementById("checkoutPanel");
 const checkoutCode = document.getElementById("checkoutCode");
-<<<<<<< HEAD
 const checkoutTotal = document.getElementById("checkoutTotal");
-=======
->>>>>>> 7fdd8667c793465a37512a7823a1b42928ea2c61
 const closeCheckout = document.getElementById("closeCheckout");
 
 function toggleCheckout(open) {
@@ -258,13 +231,9 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
     return;
   }
   const code = `OPTI-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
-<<<<<<< HEAD
   const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
   checkoutCode.textContent = code;
   checkoutTotal.textContent = formatPrice(total);
-=======
-  checkoutCode.textContent = code;
->>>>>>> 7fdd8667c793465a37512a7823a1b42928ea2c61
   toggleCheckout(true);
 });
 

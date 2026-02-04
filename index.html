@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OptiStore - Optimizaciones y cuentas</title>
+  <title>OptiStore - Cuentas Steam Premium</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,12 +15,12 @@
       <span class="dot"></span>
       <div>
         <p class="logo">OptiStore</p>
-        <p class="tagline">Optimizaciones y cuentas digitales</p>
+        <p class="tagline">Cuentas Steam verificadas y listas</p>
       </div>
     </div>
     <nav class="nav">
       <a href="#productos">Productos</a>
-      <a href="#beneficios">Beneficios</a>
+      <a href="#beneficios">Ventajas</a>
       <button class="cart-btn" id="openCart">
         <span>Carrito</span>
         <span class="cart-count" id="cartCount">0</span>
@@ -31,24 +31,25 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <p class="pill">Servicio digital</p>
-        <h1>Optimizaciones y cuentas de Steam, Roblox y más en un solo sitio.</h1>
-        <p class="hero-text">Servicios claros y directos: cuentas, mejoras y soporte. Sin ruido, sin exceso de promesas.</p>
+        <p class="pill">Tienda digital</p>
+        <h1>Cuentas Steam listas para jugar con entrega por ticket.</h1>
+        <p class="hero-text">Acceso rápido, formato claro y cuentas verificadas. Compra simple y soporte directo en Discord.</p>
         <div class="hero-actions">
           <a class="primary" href="#productos">Ver productos</a>
+          <a class="ghost" href="#beneficios">Cómo funciona</a>
         </div>
         <div class="hero-metrics">
           <div>
-            <p class="metric">Rápido</p>
-            <p>Entregas digitales en horas</p>
+            <p class="metric">Entrega</p>
+            <p>Envío al abrir ticket</p>
           </div>
           <div>
-            <p class="metric">Soporte</p>
-            <p>Atención directa</p>
+            <p class="metric">Formato</p>
+            <p>`login:pass` listo</p>
           </div>
           <div>
-            <p class="metric">Seguro</p>
-            <p>Procesos verificados</p>
+            <p class="metric">Calidad</p>
+            <p>Fresh, checked y UHQ</p>
           </div>
         </div>
       </div>
@@ -56,23 +57,27 @@
         <div class="orb orb-one"></div>
         <div class="orb orb-two"></div>
         <div class="orb orb-three"></div>
+        <div class="hero-card">
+          <p>Cuenta Steam Premium</p>
+          <h3>Payday 3 / Minecraft / GTA 6</h3>
+          <span>Entrega inmediata</span>
+          <button class="mini">Añadir al carrito</button>
+        </div>
       </div>
     </section>
 
     <section class="controls" id="productos">
       <div>
         <h2>Explora productos</h2>
-        <p>Filtra por categoría o busca lo que quieras.</p>
+        <p>Encuentra tu cuenta Steam por juego.</p>
       </div>
       <div class="control-row">
         <div class="search">
-          <input id="searchInput" type="text" placeholder="Busca: steam, roblox, optimizacion..." />
+          <input id="searchInput" type="text" placeholder="Busca: steam, payday 3, minecraft..." />
         </div>
         <select id="categorySelect">
           <option value="all">Todas las categorías</option>
-          <option value="cuentas">Cuentas</option>
-          <option value="optimizaciones">Optimizaciones</option>
-          <option value="extras">Extras</option>
+          <option value="steam">Cuentas Steam</option>
         </select>
         <select id="sortSelect">
           <option value="featured">Destacados</option>
@@ -85,15 +90,19 @@
     <section class="grid" id="productGrid"></section>
 
     <section class="benefits" id="beneficios">
-      <h2>Comprar aqui es facil</h2>
+      <h2>Comprar aquí es fácil</h2>
       <div class="benefit-grid">
         <article>
-          <h3>PayPal amigos y familiares</h3>
-          <p>Pago rápido y directo.</p>
+          <h3>Entrega por ticket</h3>
+          <p>Al abrir ticket te lo enviaremos con el formato indicado.</p>
         </article>
         <article>
-          <h3>Garantía clara</h3>
-          <p>Si hay problema, se resuelve rápido.</p>
+          <h3>Formato claro</h3>
+          <p>`login:pass` sin pasos extra.</p>
+        </article>
+        <article>
+          <h3>Soporte directo</h3>
+          <p>Te atendemos en Discord al momento.</p>
         </article>
       </div>
     </section>
@@ -135,14 +144,11 @@
     <div class="checkout-body">
       <p class="checkout-label">Tu código para ticket</p>
       <div class="checkout-code" id="checkoutCode">OPTI-XXXXXX</div>
-<<<<<<< HEAD
       <div class="checkout-pay">
         <strong>PayPal</strong>
         <span id="checkoutTotal">$0.00</span>
       </div>
       <a class="checkout-link" href="https://paypal.me/cocolosu" target="_blank" rel="noopener">paypal.me/cocolosu</a>
-=======
->>>>>>> 7fdd8667c793465a37512a7823a1b42928ea2c61
       <p>Abre un ticket en Discord y pega este código para continuar.</p>
       <a class="primary" href="https://discord.gg/TxYTuXcmhQ" target="_blank" rel="noopener">Abrir Discord</a>
     </div>
